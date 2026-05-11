@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a4267"/>
+      <stop offset="100%" stop-color="#295f91"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb11f"/>
+      <stop offset="100%" stop-color="#e79200"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="720" fill="url(#bg)"/>
+  <circle cx="794" cy="110" r="90" fill="#ffffff" opacity=".08"/>
+  <circle cx="158" cy="622" r="118" fill="#ffffff" opacity=".06"/>
+  <rect x="112" y="118" width="736" height="484" rx="44" fill="#ffffff" opacity=".09" stroke="#ffffff" stroke-opacity=".14"/>
+  <rect x="190" y="184" width="238" height="352" rx="32" fill="#ffffff"/>
+  <circle cx="309" cy="266" r="54" fill="#dbe7f2"/>
+  <path d="M228 472c22-88 72-126 154-126s132 38 154 126H228z" fill="#dbe7f2"/>
+  <rect x="534" y="194" width="218" height="142" rx="24" fill="url(#accent)"/>
+  <path d="M614 208l58 40v72h-116v-72l58-40z" fill="#ffffff" opacity=".94"/>
+  <rect x="570" y="266" width="88" height="16" rx="8" fill="#1f4d78" opacity=".24"/>
+  <rect x="534" y="372" width="218" height="142" rx="24" fill="#eef4fa"/>
+  <path d="M596 398c0-28 20-50 48-50s48 22 48 50v24h16c16 0 28 12 28 28v40c0 16-12 28-28 28H580c-16 0-28-12-28-28v-40c0-16 12-28 28-28h16v-24z" fill="#1f4d78"/>
+  <circle cx="644" cy="470" r="14" fill="#ffb11f"/>
+</svg>

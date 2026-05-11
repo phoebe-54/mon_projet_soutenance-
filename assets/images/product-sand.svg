@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7fbfe"/>
+      <stop offset="100%" stop-color="#e6eef6"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="url(#bg)"/>
+  <rect x="118" y="316" width="404" height="44" rx="22" fill="#d2dce5"/>
+  <path d="M144 316c48-84 86-126 170-126 82 0 130 42 188 126H144z" fill="#f0b24b"/>
+  <path d="M210 316c30-54 66-84 116-84 52 0 90 30 122 84H210z" fill="#e49e2d"/>
+  <circle cx="228" cy="248" r="12" fill="#ffd38a"/>
+  <circle cx="420" cy="272" r="10" fill="#ffd38a"/>
+  <text x="202" y="410" fill="#173a5d" font-size="30" font-family="Arial, sans-serif" font-weight="700">SABLE FIN 1M3</text>
+</svg>

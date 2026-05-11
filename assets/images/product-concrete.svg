@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7fbfe"/>
+      <stop offset="100%" stop-color="#e6eef6"/>
+    </linearGradient>
+    <linearGradient id="mix" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f4d78"/>
+      <stop offset="100%" stop-color="#295f91"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="480" fill="url(#bg)"/>
+  <circle cx="258" cy="338" r="34" fill="#24303c"/>
+  <circle cx="398" cy="338" r="34" fill="#24303c"/>
+  <circle cx="258" cy="338" r="14" fill="#dfe8f0"/>
+  <circle cx="398" cy="338" r="14" fill="#dfe8f0"/>
+  <rect x="178" y="228" width="264" height="76" rx="22" fill="#ffb11f"/>
+  <path d="M238 164h116l46 62H192l46-62z" fill="url(#mix)"/>
+  <path d="M252 164l96 0 28 44H224l28-44z" fill="#6b7d8d"/>
+  <text x="168" y="404" fill="#173a5d" font-size="28" font-family="Arial, sans-serif" font-weight="700">BETON PRET A L'EMPLOI</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f4f8fc"/>
+      <stop offset="100%" stop-color="#e2eaf2"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f4d78"/>
+      <stop offset="100%" stop-color="#295f91"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb11f"/>
+      <stop offset="100%" stop-color="#e19400"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="720" fill="url(#bg)"/>
+  <circle cx="138" cy="122" r="86" fill="#ffffff" opacity=".7"/>
+  <circle cx="812" cy="102" r="74" fill="#ffb11f" opacity=".16"/>
+  <rect x="84" y="130" width="792" height="470" rx="42" fill="#ffffff" stroke="#d6e1eb" stroke-width="3"/>
+  <rect x="124" y="174" width="218" height="382" rx="28" fill="#eef3f8"/>
+  <rect x="370" y="174" width="218" height="382" rx="28" fill="#eef3f8"/>
+  <rect x="616" y="174" width="218" height="382" rx="28" fill="#eef3f8"/>
+  <rect x="152" y="212" width="162" height="154" rx="22" fill="#ffffff"/>
+  <path d="M233 216l48 34v112h-96V250l48-34z" fill="url(#orange)"/>
+  <rect x="198" y="286" width="70" height="14" rx="7" fill="#173a5d" opacity=".35"/>
+  <text x="175" y="412" fill="#173a5d" font-size="22" font-family="Arial, sans-serif" font-weight="700">Ciment Portland</text>
+  <rect x="152" y="438" width="104" height="22" rx="11" fill="#ffb11f" opacity=".26"/>
+  <rect x="152" y="474" width="136" height="22" rx="11" fill="#1f4d78" opacity=".14"/>
+  <rect x="398" y="212" width="162" height="154" rx="22" fill="#ffffff"/>
+  <path d="M430 332c40-70 58-84 90-84 34 0 54 14 72 84H430z" fill="url(#orange)"/>
+  <rect x="430" y="332" width="162" height="30" rx="15" fill="#d8e0e8"/>
+  <text x="444" y="412" fill="#173a5d" font-size="22" font-family="Arial, sans-serif" font-weight="700">Sable fin 1m3</text>
+  <rect x="398" y="438" width="96" height="22" rx="11" fill="#ffb11f" opacity=".26"/>
+  <rect x="398" y="474" width="124" height="22" rx="11" fill="#1f4d78" opacity=".14"/>
+  <rect x="644" y="212" width="162" height="154" rx="22" fill="#ffffff"/>
+  <circle cx="692" cy="280" r="30" fill="#b7c3cf"/>
+  <circle cx="742" cy="254" r="28" fill="#a7b4c1"/>
+  <circle cx="772" cy="302" r="30" fill="#95a3af"/>
+  <rect x="664" y="332" width="122" height="30" rx="15" fill="url(#blue)"/>
+  <text x="664" y="412" fill="#173a5d" font-size="22" font-family="Arial, sans-serif" font-weight="700">Graviers 0/20</text>
+  <rect x="644" y="438" width="96" height="22" rx="11" fill="#ffb11f" opacity=".26"/>
+  <rect x="644" y="474" width="124" height="22" rx="11" fill="#1f4d78" opacity=".14"/>
+</svg>
