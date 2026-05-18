@@ -8,19 +8,18 @@ include 'includes/header.php';
 <section class="hero-section-nocibe">
     <div class="home-hero-inner"> 
         <div class="home-hero-copy">
-            <span class="home-hero-kicker">CimenteriNOe NOCIBE</span>
-            <h1>Commandez votre ciment en ligne, simplement et rapidement.</h1>
+            <h1>Plateforme de commande et de suivi de ciment.</h1>
             <p>
-                Une plateforme moderne pour consulter les produits, passer vos commandes,
-                suivre les livraisons et gerer vos achats de ciment en toute confiance.
+                Une solution simple pour commander vos ciments et suivre vos livraisons
+                depuis un espace fiable et adapté aux professionnels.
             </p>
         </div>
         <div class="home-hero-actions hero-actions">
-            <a href="client/catalogue.php" class="btn btn-brand px-4 py-3">
+            <a href="register.php" class="btn btn-brand home-action-btn">
                 <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
-                Voir catalogue
+                Creer un compte
             </a>
-            <a href="login.php" class="btn btn-soft px-4 py-3">
+            <a href="login.php" class="btn btn-soft home-action-btn">
                 <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
                 Se connecter
             </a>
@@ -30,59 +29,74 @@ include 'includes/header.php';
 
 <main class="site-container">
 
-    <section class="dashboard-overview" aria-labelledby="why-nocibe">
+    <section class="home-about-section" aria-labelledby="about-nocibe">
         <div class="overview-title">
-            <h2 id="why-nocibe">Pourquoi choisir NOCIBE</h2>
-            <p>Les raisons de faire confiance a notre plateforme</p>
+            <h2 id="about-nocibe">À propos de NOCIBE</h2>
+            <p>Notre mission est de simplifier l'achat de ciment avec une plateforme moderne et fiable.</p>
         </div>
 
-        <div class="metrics-grid">
-            <div class="metric-box">
-                <div class="metric-icon">
-                    <i class="fa-solid fa-certificate"></i>
-                </div>
-                <div class="metric-content">
-                    <div class="metric-value">100%</div>
-                    <div class="metric-label">Ciment certifie</div>
-                </div>
-            </div>
-
-            <div class="metric-box">
-                <div class="metric-icon">
-                    <i class="fa-solid fa-truck-fast"></i>
-                </div>
-                <div class="metric-content">
-                    <div class="metric-value">24-48h</div>
-                    <div class="metric-label">Livraison rapide</div>
-                </div>
-            </div>
-
-            <div class="metric-box">
-                <div class="metric-icon">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-                <div class="metric-content">
-                    <div class="metric-value">5000+</div>
-                    <div class="metric-label">Clients satisfaits</div>
-                </div>
-            </div>
-
-            <div class="metric-box">
-                <div class="metric-icon">
-                    <i class="fa-solid fa-tags"></i>
-                </div>
-                <div class="metric-content">
-                    <div class="metric-value">Meilleurs prix</div>
-                    <div class="metric-label">Garantis du marche</div>
-                </div>
-            </div>
+        <div class="home-about-grid">
+            <article class="home-about-card">
+                <img src="assets/images/Copilot_20260428_135728.png" alt="Production locale NOCIBE">
+                <i class="fa-solid fa-industry" aria-hidden="true"></i>
+                <h3>Production locale</h3>
+                <p>NOCIBE produit du ciment de qualité directement accessible en ligne pour les professionnels et particuliers.</p>
+            </article>
+            <article class="home-about-card">
+                <img src="assets/images/Copilot_20260428_135752.png" alt="Livraison rapide NOCIBE">
+                <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+                <h3>Livraison rapide</h3>
+                <p>Nous proposons une livraison en 24-72h selon les zones, avec un suivi de commande clair.</p>
+            </article>
+            <article class="home-about-card">
+                <img src="assets/images/Copilot_20260518_132212.png" alt="Support dédié">
+                <i class="fa-solid fa-headset" aria-hidden="true"></i>
+                <h3>Support dédié</h3>
+                <p>Une équipe à l'écoute vous accompagne pour le choix du produit et le suivi de votre commande.</p>
+            </article>
         </div>
     </section>
 
+    <section class="home-categories-section" aria-labelledby="product-categories">
+        <div class="overview-title">
+            <h2 id="product-categories">Catégories de produits</h2>
+            <p>Explorez nos différentes familles de ciment.</p>
+        </div>
+
+        <div class="categories-grid">
+            <a href="login.php?login_required=order" class="category-card">
+                <img src="assets/images/Copilot_20260506_180528.png" alt="Ciment Portland">
+                <strong>Ciment Portland</strong>
+                <p>Le ciment standard utilisé pour les constructions durables.</p>
+            </a>
+            <a href="login.php?login_required=order" class="category-card">
+                <img src="assets/images/Copilot_20260428_135747.png" alt="Ciment standard">
+                <strong>Ciment standard</strong>
+                <p>Une solution fiable pour les besoins classiques du bâtiment.</p>
+            </a>
+            <a href="login.php?login_required=order" class="category-card">
+                <img src="assets/images/Copilot_20260518_123256.png" alt="Ciment multi-usage">
+                <strong>Ciment multi-usage</strong>
+                <p>Polyvalent, adapté à divers usages du bâtiment.</p>
+            </a>
+            <a href="login.php?login_required=order" class="category-card">
+                <img src="assets/images/Copilot_20260504_144154.png" alt="Ciment haute performance">
+                <strong>Ciment haute performance</strong>
+                <p>Résistance élevée pour structures exigeantes.</p>
+            </a>
+            <a href="login.php?login_required=order" class="category-card">
+                <img src="assets/images/Copilot_20260504_144151.png" alt="Ciment blanc">
+                <strong>Ciment blanc</strong>
+                <p>Finition soignée pour chantiers décoratifs et architecturaux.</p>
+            </a>
+        </div>
+    </section>
+
+
     <section class="home-process-section">
         <div class="overview-title">
-            <h2>Comment ca marche</h2>
-            <p>Un parcours simple, pense pour les clients et les gestionnaires</p>
+            <h2>Comment ça marche</h2>
+            <p>Un parcours simple, penser pour les clients et les gestionnaires</p>
         </div>
 
         <div class="home-process-grid">
@@ -127,20 +141,42 @@ include 'includes/header.php';
             </article>
         </div>
     </section>
-
     <section class="home-support-section" id="support">
         <div>
             <span class="home-hero-kicker">Support client</span>
             <h2>Besoin d'aide pour une commande ?</h2>
             <p>
-                Notre equipe vous accompagne pour le choix du ciment, la validation
-                des commandes et le suivi des livraisons.
+                Notre equipe vous accompagne pour le choix du produit et le suivi de votre commande.
             </p>
         </div>
-        <a href="client/catalogue.php" class="btn btn-brand">
+        <a href="login.php?login_required=order" class="btn btn-brand home-support-btn">
             <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-            Demarrer maintenant
+            Commander maintenant
         </a>
+    </section>
+
+    <section class="home-contact-section" aria-labelledby="contact-nocibe">
+        <div class="overview-title">
+            <h2 id="contact-nocibe">Contact</h2>
+            <p>Contactez-nous pour toute question sur les produits, les commandes ou la livraison.</p>
+        </div>
+        <div class="contact-grid">
+            <article class="contact-card">
+                <i class="fa-solid fa-phone"></i>
+                <h3>Téléphone</h3>
+                <p>(+229) 01 21 50 00 42<br>(+229) 01 21 31 55 13</p>
+            </article>
+            <article class="contact-card">
+                <i class="fa-solid fa-envelope"></i>
+                <h3>Email</h3>
+                <p>contact@nocibe.com</p>
+            </article>
+            <article class="contact-card">
+                <i class="fa-solid fa-map-marker-alt"></i>
+                <h3>Adresse</h3>
+                <p>Villa N°11, Résidence Akarade<br>08 BP 1024<br>Cotonou - Bénin</p>
+            </article>
+        </div>
     </section>
 </main>
 

@@ -253,6 +253,95 @@ function addToCart(button) {
     }, 2000);
 }
 
+function renderNocibeCart() {
+    const container = document.getElementById('cartItems');
+    const subtotalElement = document.getElementById('cartSubtotal');
+    const totalElement = document.getElementById('cartTotal');
+
+    if (!container) return;
+
+    const cart = JSON.parse(localStorage.getItem('nocibe_cart')) || [];
+    container.innerHTML = '';
+
+    if (cart.length === 0) {
+        container.innerHTML = '<div class="alert alert-warning mb-0">Votre panier est vide.</div>';
+        if (subtotalElement) subtotalElement.textContent = '0 FCFA';
+        if (totalElement) totalElement.textContent = '0 FCFA';
+        return;
+    }
+
+    let total = 0;
+
+    cart.forEach(item => {
+        const quantity = parseInt(item.quantity, 10) || 1;
+        const price = parseFloat(item.price) || 0;
+        const lineTotal = quantity * price;
+        total += lineTotal;
+
+        const row = document.createElement('div');
+        row.className = 'cart-item';
+        row.innerHTML = `
+            <img src="../assets/images/product-cement.svg" alt="${escapeHtml(item.name)}">
+            <div>
+                <h5>${escapeHtml(item.name)}</h5>
+                <p>Prix unitaire : ${formatCurrency(price)}</p>
+                <div class="qty-controls">
+                    <button type="button" data-cart-minus="${item.id}">-</button>
+                    <span>${quantity}</span>
+                    <button type="button" data-cart-plus="${item.id}">+</button>
+                </div>
+            </div>
+            <div class="text-end">
+                <div class="table-strong">${formatCurrency(lineTotal)}</div>
+                <button class="btn btn-soft btn-sm mt-2" type="button" data-cart-remove="${item.id}">Retirer</button>
+            </div>
+        `;
+        container.appendChild(row);
+    });
+
+    if (subtotalElement) subtotalElement.textContent = formatCurrency(total);
+    if (totalElement) totalElement.textContent = formatCurrency(total);
+
+    container.querySelectorAll('[data-cart-minus]').forEach(button => {
+        button.addEventListener('click', () => updateCartLine(button.dataset.cartMinus, -1));
+    });
+    container.querySelectorAll('[data-cart-plus]').forEach(button => {
+        button.addEventListener('click', () => updateCartLine(button.dataset.cartPlus, 1));
+    });
+    container.querySelectorAll('[data-cart-remove]').forEach(button => {
+        button.addEventListener('click', () => removeCartLine(button.dataset.cartRemove));
+    });
+}
+
+function updateCartLine(productId, delta) {
+    const cart = JSON.parse(localStorage.getItem('nocibe_cart')) || [];
+    const item = cart.find(row => String(row.id) === String(productId));
+
+    if (!item) return;
+
+    item.quantity = Math.max(1, (parseInt(item.quantity, 10) || 1) + delta);
+    localStorage.setItem('nocibe_cart', JSON.stringify(cart));
+    renderNocibeCart();
+    updateCartBadge();
+}
+
+function removeCartLine(productId) {
+    const cart = (JSON.parse(localStorage.getItem('nocibe_cart')) || [])
+        .filter(row => String(row.id) !== String(productId));
+    localStorage.setItem('nocibe_cart', JSON.stringify(cart));
+    renderNocibeCart();
+    updateCartBadge();
+}
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 function updateCartBadge() {
     const cart = JSON.parse(localStorage.getItem('nocibe_cart')) || [];
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);

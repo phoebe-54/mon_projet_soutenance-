@@ -1,3 +1,8 @@
+<?php
+$headerUser = function_exists('current_user') ? current_user() : null;
+$headerRole = $headerUser['role'] ?? '';
+$headerRole = $headerRole === 'administrateur' ? 'admin' : $headerRole;
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,5 +23,13 @@
                 <span>Production, commande et livraison de ciment</span>
             </span>
         </a>
+        <?php if (empty($hideHeaderNav)): ?>
+        <nav class="d-flex align-items-center gap-2 flex-wrap">
+            <?php if ($headerUser): ?>
+                <a class="btn btn-soft btn-sm" href="<?= htmlspecialchars($basePath) ?>backoffice/<?= htmlspecialchars($headerRole ?: 'client') ?>/index.php">Tableau de bord</a>
+                <a class="btn btn-brand btn-sm" href="<?= htmlspecialchars($basePath) ?>logout.php">Deconnexion</a>
+            <?php endif; ?>
+        </nav>
+        <?php endif; ?>
     </div>
 </header>
