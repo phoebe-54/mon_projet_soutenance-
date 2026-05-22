@@ -8,20 +8,17 @@ include 'includes/header.php';
 <section class="hero-section-nocibe">
     <div class="home-hero-inner"> 
         <div class="home-hero-copy">
+            <span class="home-hero-welcome">Bienvenue &agrave; NOCIBE S.A</span>
             <h1>Plateforme de commande et de suivi de ciment.</h1>
             <p>
                 Une solution simple pour commander vos ciments et suivre vos livraisons
-                depuis un espace fiable et adapté aux professionnels.
+                depuis un espace fiable et adapt&eacute; aux professionnels.
             </p>
         </div>
-        <div class="home-hero-actions hero-actions">
-            <a href="register.php" class="btn btn-brand home-action-btn">
-                <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
-                Creer un compte
-            </a>
-            <a href="login.php" class="btn btn-soft home-action-btn">
-                <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
-                Se connecter
+        <div class="home-hero-actions">
+            <a href="login.php?login_required=order" class="btn btn-brand home-action-btn">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                Commencer
             </a>
         </div>
     </div>
@@ -37,19 +34,19 @@ include 'includes/header.php';
 
         <div class="home-about-grid">
             <article class="home-about-card">
-                <img src="assets/images/Copilot_20260428_135728.png" alt="Production locale NOCIBE">
+                <img src="assets/images/Copilot_20260522_224259.png" alt="Production locale NOCIBE">
                 <i class="fa-solid fa-industry" aria-hidden="true"></i>
                 <h3>Production locale</h3>
                 <p>NOCIBE produit du ciment de qualité directement accessible en ligne pour les professionnels et particuliers.</p>
             </article>
             <article class="home-about-card">
-                <img src="assets/images/Copilot_20260428_135752.png" alt="Livraison rapide NOCIBE">
+                <img src="assets/images/Copilot_20260522_131523.png" alt="Livraison rapide NOCIBE">
                 <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
                 <h3>Livraison rapide</h3>
                 <p>Nous proposons une livraison en 24-72h selon les zones, avec un suivi de commande clair.</p>
             </article>
             <article class="home-about-card">
-                <img src="assets/images/Copilot_20260518_132212.png" alt="Support dédié">
+                <img src="assets/images/Copilot_20260519_220721.png" alt="Support dédié NOCIBE">
                 <i class="fa-solid fa-headset" aria-hidden="true"></i>
                 <h3>Support dédié</h3>
                 <p>Une équipe à l'écoute vous accompagne pour le choix du produit et le suivi de votre commande.</p>
@@ -57,43 +54,7 @@ include 'includes/header.php';
         </div>
     </section>
 
-    <section class="home-categories-section" aria-labelledby="product-categories">
-        <div class="overview-title">
-            <h2 id="product-categories">Catégories de produits</h2>
-            <p>Explorez nos différentes familles de ciment.</p>
-        </div>
-
-        <div class="categories-grid">
-            <a href="login.php?login_required=order" class="category-card">
-                <img src="assets/images/Copilot_20260506_180528.png" alt="Ciment Portland">
-                <strong>Ciment Portland</strong>
-                <p>Le ciment standard utilisé pour les constructions durables.</p>
-            </a>
-            <a href="login.php?login_required=order" class="category-card">
-                <img src="assets/images/Copilot_20260428_135747.png" alt="Ciment standard">
-                <strong>Ciment standard</strong>
-                <p>Une solution fiable pour les besoins classiques du bâtiment.</p>
-            </a>
-            <a href="login.php?login_required=order" class="category-card">
-                <img src="assets/images/Copilot_20260518_123256.png" alt="Ciment multi-usage">
-                <strong>Ciment multi-usage</strong>
-                <p>Polyvalent, adapté à divers usages du bâtiment.</p>
-            </a>
-            <a href="login.php?login_required=order" class="category-card">
-                <img src="assets/images/Copilot_20260504_144154.png" alt="Ciment haute performance">
-                <strong>Ciment haute performance</strong>
-                <p>Résistance élevée pour structures exigeantes.</p>
-            </a>
-            <a href="login.php?login_required=order" class="category-card">
-                <img src="assets/images/Copilot_20260504_144151.png" alt="Ciment blanc">
-                <strong>Ciment blanc</strong>
-                <p>Finition soignée pour chantiers décoratifs et architecturaux.</p>
-            </a>
-        </div>
-    </section>
-
-
-    <section class="home-process-section">
+    <section class="home-process-section" id="how-it-works">
         <div class="overview-title">
             <h2>Comment ça marche</h2>
             <p>Un parcours simple, penser pour les clients et les gestionnaires</p>
@@ -103,7 +64,7 @@ include 'includes/header.php';
             <article class="home-process-card">
                 <span>01</span>
                 <div class="home-process-visual">
-                    <img src="assets/images/home-process-order.png" alt="Gamme de produits ciment NOCIBE">
+                    <img src="assets/images/Copilot_20260521_123914.png" alt="Gamme de produits ciment NOCIBE">
                 </div>
                 <i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i>
                 <h3>Choisir les produits</h3>
@@ -113,7 +74,7 @@ include 'includes/header.php';
             <article class="home-process-card">
                 <span>02</span>
                 <div class="home-process-visual">
-                    <img src="assets/images/home-process-command-validation.png" alt="Validation de commande NOCIBE">
+                    <img src="assets/images/Copilot_20260522_140442.png" alt="Validation de commande NOCIBE">
                 </div>
                 <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
                 <h3>Passer commande</h3>
@@ -133,7 +94,7 @@ include 'includes/header.php';
             <article class="home-process-card">
                 <span>04</span>
                 <div class="home-process-visual">
-                    <img src="assets/images/home-process-delivery.png" alt="Camion de livraison NOCIBE">
+                    <img src="assets/images/Copilot_20260522_133429.png" alt="Camion de livraison NOCIBE">
                 </div>
                 <i class="fa-solid fa-route" aria-hidden="true"></i>
                 <h3>Suivre la livraison</h3>

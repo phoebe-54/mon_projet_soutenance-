@@ -80,13 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>NOCIBE | Connexion</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=20260505-1">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260522-4">
 </head>
 <body class="auth-page auth-login">
     <div class="auth-shell">
         <section class="auth-panel">
             <div class="auth-panel-logo">
-                <img src="assets/images/nocibe-logo-transparent.png" alt="Logo NOCIBE">
+                <img src="assets/images/Copilot_20260522_155511.png" alt="Logo NOCIBE S.A">
+                <strong>NOCIBE S.A</strong>
             </div>
             <div class="login-panel-head">
                 <span class="login-panel-icon">

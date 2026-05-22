@@ -20,8 +20,12 @@ $sidebarItems = $itemsByRole[$currentRole] ?? [];
 ?>
 <aside class="backoffice-sidebar">
     <a class="backoffice-brand" href="../../index.php">
-        <img src="../../assets/images/nocibe-logo-icon-transparent.png" alt="NOCIBE">
-        <span>NOCIBE</span>
+        <img src="../../assets/images/Copilot_20260522_155511.png" alt="NOCIBE S.A">
+        <span class="backoffice-brand-text">
+            <strong>NOCIBE S.A</strong>
+            <small>Nouvelle cimenterie du B&eacute;nin</small>
+            <small>Bien construire commence chez nous</small>
+        </span>
     </a>
 
     <nav class="backoffice-nav">
