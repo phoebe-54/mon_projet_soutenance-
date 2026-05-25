@@ -1,8 +1,8 @@
 <?php
-require_once '../../includes/auth_check.php';
+require_once __DIR__ . '/includes/auth_check.php';
 requireRole('client');
 
-include '../includes/header.php';
+include __DIR__ . '/backoffice/includes/header.php';
 
 // callback MTN dépose mtn_result_code / mtn_transaction_id
 if (empty($_SESSION['mtn_result_code']) || (string)$_SESSION['mtn_result_code'] !== '0') {
@@ -40,7 +40,7 @@ if (empty($_SESSION['mtn_result_code']) || (string)$_SESSION['mtn_result_code'] 
     display: inline-block;
     margin-top: 20px;
     padding: 14px 18px;
-    background: #0ea5e9;
+    background: #075fc7;
     color: white;
     border-radius: 14px;
     text-decoration: none;

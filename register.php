@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>NOCIBE | Inscription</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=20260522-4">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260525-6">
 </head>
 <body class="auth-page auth-register">
     <div class="auth-shell">
@@ -106,18 +106,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="email" name="email" class="form-control" placeholder="exemple@nocibe.com" required>
                     </div>
                 </div>
-                <div class="register-field register-field-right">
+                <div class="register-field">
                     <label class="form-label fw-semibold">Telephone</label>
                     <div class="input-shell">
                         <i class="fa-solid fa-phone"></i>
                         <input type="tel" name="telephone" class="form-control" placeholder="Votre numero de telephone" required>
                     </div>
                 </div>
-                <div class="register-field">
+                <div class="register-field register-field-right">
                     <label class="form-label fw-semibold">Mot de passe</label>
                     <div class="input-shell">
                         <i class="fa-solid fa-lock"></i>
                         <input type="password" name="password" class="form-control" placeholder="Votre mot de passe" required>
+                        <button class="password-toggle" type="button" aria-label="Afficher le mot de passe">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="register-field">
@@ -125,6 +128,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="input-shell">
                         <i class="fa-solid fa-lock"></i>
                         <input type="password" name="confirm_password" class="form-control" placeholder="Confirmer le mot de passe" required>
+                        <button class="password-toggle" type="button" aria-label="Afficher le mot de passe">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="register-field register-action">
@@ -141,5 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </section>
     </div>
+    <script src="assets/js/password-toggle.js?v=20260525-2"></script>
 </body>
 </html>

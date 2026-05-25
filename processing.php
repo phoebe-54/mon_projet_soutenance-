@@ -1,8 +1,8 @@
 <?php
-require_once '../../includes/auth_check.php';
+require_once __DIR__ . '/includes/auth_check.php';
 requireRole('client');
 
-include '../includes/header.php';
+include __DIR__ . '/backoffice/includes/header.php';
 
 $method = $_SESSION['paiement_method'] ?? 'inconnu';
 ?>
@@ -21,7 +21,7 @@ $method = $_SESSION['paiement_method'] ?? 'inconnu';
     width:40px;
     height:40px;
     border:4px solid #ddd;
-    border-top:4px solid #0ea5e9;
+    border-top:4px solid #075fc7;
     border-radius:50%;
     margin:20px auto;
     animation:spin 1s linear infinite;

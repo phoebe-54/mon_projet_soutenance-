@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap');
 
 :root {
   --bg: #f5f5f5;
@@ -46,7 +46,7 @@ body {
   margin: 0;
   color: var(--text);
   background: #ffffff;
-  font-family: "Manrope", "Segoe UI", sans-serif;
+  font-family: "Lexend", "Segoe UI", sans-serif;
 }
 
 body::before,
@@ -102,6 +102,11 @@ img {
   padding-top: 0;
 }
 
+.site-shell {
+  padding-top: 134px;
+  padding-bottom: 96px;
+}
+
 .glass-card,
 .panel-card,
 .metric-card,
@@ -149,8 +154,10 @@ img {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 40;
   background: linear-gradient(135deg, #03152e 0%, #063b9f 48%, #00aeef 100%);
   border-bottom: 4px solid var(--footer-accent);
@@ -1270,6 +1277,58 @@ img {
   padding-left: 48px;
 }
 
+.input-shell .password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--brand-deep);
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.input-shell .password-toggle i {
+  display: none;
+}
+
+.input-shell:has(.password-toggle) .form-control {
+  padding-right: 56px;
+}
+
+.input-shell .password-toggle::before {
+  content: "";
+  width: 21px;
+  height: 13px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  transform: rotate(-8deg);
+}
+
+.input-shell .password-toggle::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.input-shell .password-toggle.is-visible::after {
+  width: 24px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: rotate(-38deg);
+}
+
 .form-note,
 .helper-text {
   color: var(--accent-deep);
@@ -1897,7 +1956,12 @@ img {
 }
 
 .page-footer {
-  margin-top: 28px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 35;
+  margin-top: 0;
   padding: 26px 0 30px;
   color: #ffffff;
   background: linear-gradient(135deg, #03152e 0%, #063b9f 48%, #00aeef 100%);
@@ -2595,7 +2659,7 @@ img {
   background:
     linear-gradient(90deg, rgba(3, 7, 18, 0.58) 0%, rgba(15, 23, 42, 0.28) 48%, rgba(15, 23, 42, 0.12) 100%),
     linear-gradient(180deg, rgba(15, 23, 42, 0.12), rgba(15, 23, 42, 0.42)),
-    url('../images/Copilot_20260522_143055.png') center 56%/cover no-repeat;
+    url('../images/accueil.png') center 56%/cover no-repeat;
   opacity: 0;
   pointer-events: none;
   z-index: 0;
@@ -3097,7 +3161,7 @@ img {
     background:
       linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.28)),
       linear-gradient(90deg, rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.08)),
-      url('../images/Copilot_20260522_143055.png') center center/contain no-repeat;
+      url('../images/accueil.png') center center/contain no-repeat;
   }
 
   .home-hero-copy h1 {
@@ -3849,7 +3913,7 @@ img {
 }
 
 .auth-register .auth-panel {
-  max-width: 760px;
+  max-width: 860px;
 }
 
 .auth-register .auth-panel-logo {
@@ -3882,7 +3946,8 @@ img {
 }
 
 .auth-register .register-action {
-  grid-column: 1 / -1;
+  grid-column: auto;
+  align-self: end;
 }
 
 .auth-register .form-label {
@@ -4044,6 +4109,10 @@ img {
   background: transparent;
 }
 
+.auth-register .auth-shell {
+  width: min(900px, 100%);
+}
+
 .auth-login .auth-brand,
 .auth-register .auth-brand,
 .auth-login .auth-visual,
@@ -4066,6 +4135,10 @@ img {
   box-shadow: 0 22px 60px rgba(15, 23, 42, 0.14);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+}
+
+.auth-register .auth-panel {
+  padding: clamp(26px, 4vw, 42px);
 }
 
 .auth-panel-logo {
@@ -4454,4 +4527,565 @@ img {
   .backoffice-user {
     width: 100%;
   }
+}
+
+.workspace-grid,
+.dashboard-summary-grid,
+.form-grid-2 {
+  display: grid;
+  gap: 18px;
+}
+
+.workspace-grid {
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  align-items: start;
+}
+
+.dashboard-summary-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.panel-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.panel-card h2,
+.panel-card h3 {
+  margin: 0 0 14px;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.panel-card + .panel-card,
+.dashboard-section {
+  margin-top: 18px;
+}
+
+.form-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.full-span {
+  grid-column: 1 / -1;
+}
+
+.compact-form {
+  display: grid;
+  gap: 12px;
+}
+
+.inline-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.inline-form .form-control,
+.inline-form .form-select {
+  min-width: 170px;
+  width: auto;
+}
+
+.empty-state {
+  padding: 18px;
+  border: 1px dashed rgba(100, 116, 139, 0.35);
+  border-radius: 8px;
+  color: var(--text-soft);
+  background: #ffffff;
+}
+
+.mini-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mini-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.client-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.client-product-card {
+  padding: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.client-product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 8px;
+  background: #ffffff;
+  font-weight: 700;
+}
+
+/* Lexend polish and fixed chrome */
+body,
+button,
+input,
+select,
+textarea,
+.section-title,
+.hero-title,
+.auth-title,
+.admin-title,
+.panel-title,
+.brand-text strong,
+.auth-panel-logo strong,
+.backoffice-brand strong,
+.backoffice-header h1,
+.panel-card h2,
+.client-product-card h3,
+.metric-card strong {
+  font-family: "Lexend", "Segoe UI", sans-serif !important;
+}
+
+.site-shell {
+  padding-bottom: 126px;
+}
+
+.backoffice-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.auth-register .auth-shell {
+  width: min(1080px, 100%);
+}
+
+.auth-register .auth-panel {
+  max-width: none;
+  border-radius: 8px;
+}
+
+.auth-register .register-form {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.auth-register .register-field:nth-child(1),
+.auth-register .register-field:nth-child(2) {
+  grid-column: span 2;
+}
+
+.auth-register .register-field:nth-child(3),
+.auth-register .register-field:nth-child(4),
+.auth-register .register-field:nth-child(5),
+.auth-register .register-action {
+  grid-column: span 2;
+}
+
+.auth-register .register-action {
+  align-self: end;
+}
+
+.auth-register .input-shell .form-control,
+.auth-register .register-submit {
+  min-height: 54px;
+}
+
+.cart-line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 86px 44px;
+  gap: 10px;
+  align-items: center;
+}
+
+.cart-total {
+  display: block;
+  padding: 12px 0 0;
+  color: var(--brand);
+  font-size: 1.1rem;
+}
+
+.cart-remove-form {
+  margin-top: 10px;
+}
+
+@media (max-width: 1100px) {
+  .workspace-grid,
+  .dashboard-summary-grid,
+  .client-product-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-shell {
+    padding-top: 238px;
+    padding-bottom: 132px;
+  }
+
+  .workspace-grid,
+  .dashboard-summary-grid,
+  .form-grid-2,
+  .client-product-grid,
+  .payment-options {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-register .register-form {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-register .register-field:nth-child(1),
+  .auth-register .register-field:nth-child(2),
+  .auth-register .register-field:nth-child(3),
+  .auth-register .register-field:nth-child(4),
+  .auth-register .register-field:nth-child(5),
+  .auth-register .register-action {
+    grid-column: auto;
+  }
+}
+
+/* Layout refinement: tighter register form and consistent blue theme */
+:root {
+  --brand: #075fc7;
+  --brand-deep: #062b8f;
+  --brand-soft: #dff4ff;
+  --footer-accent: #00aeef;
+}
+
+.auth-page.auth-register {
+  --brand: #075fc7;
+  --brand-deep: #062b8f;
+  --brand-soft: #dff4ff;
+  --footer-accent: #00aeef;
+  padding: clamp(18px, 3vw, 34px) 16px;
+}
+
+.auth-page.auth-login {
+  --brand: #075fc7;
+  --brand-deep: #062b8f;
+  --brand-soft: #dff4ff;
+  --footer-accent: #00aeef;
+}
+
+.auth-register .auth-shell {
+  width: min(760px, 100%);
+}
+
+.auth-register .auth-panel {
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: 8px;
+}
+
+.auth-register .register-form {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 14px;
+}
+
+.auth-register .register-field:nth-child(1),
+.auth-register .register-field:nth-child(2),
+.auth-register .register-field:nth-child(3),
+.auth-register .register-field:nth-child(4),
+.auth-register .register-field:nth-child(5),
+.auth-register .register-action {
+  grid-column: auto;
+}
+
+.auth-register .input-shell .form-control,
+.auth-register .register-submit {
+  min-height: 48px;
+}
+
+.auth-register .auth-panel-logo {
+  margin-bottom: 12px;
+}
+
+.auth-register .auth-panel-logo img {
+  max-width: 76px;
+  max-height: 76px;
+}
+
+.auth-register .auth-title {
+  font-size: clamp(1.55rem, 2.4vw, 1.95rem);
+}
+
+.auth-register .auth-panel-logo strong,
+.auth-register .input-shell i,
+.auth-register .auth-links a {
+  color: var(--brand-deep);
+}
+
+.auth-register .btn-brand.w-100,
+.auth-register .register-submit {
+  background: linear-gradient(135deg, var(--brand), var(--brand-deep));
+  border-color: transparent;
+}
+
+.auth-register .auth-subtitle {
+  margin-bottom: 8px;
+}
+
+.backoffice-shell {
+  align-items: stretch;
+  background: #f5f7f8;
+}
+
+.backoffice-sidebar {
+  position: relative;
+  top: auto;
+  align-self: stretch;
+  min-height: 100vh;
+  height: 100%;
+  gap: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+    linear-gradient(180deg, #062b8f 0%, #075fc7 62%, #04306f 100%);
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.12);
+}
+
+.backoffice-nav {
+  align-content: start;
+}
+
+.backoffice-nav a,
+.backoffice-logout {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.backoffice-nav a:hover,
+.backoffice-logout:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.backoffice-logout {
+  margin-top: auto;
+}
+
+.backoffice-header {
+  position: static;
+}
+
+.backoffice-user,
+.metric-card,
+.panel-card,
+.client-product-card,
+.payment-option,
+.mini-list li {
+  border-color: rgba(7, 95, 199, 0.12);
+  box-shadow: 0 16px 38px rgba(6, 43, 143, 0.08);
+}
+
+.metric-card {
+  background:
+    linear-gradient(135deg, rgba(223, 244, 255, 0.84), rgba(255, 255, 255, 0.96)),
+    #ffffff;
+}
+
+.metric-card strong,
+.cart-total,
+.panel-card h2,
+.panel-card h3 {
+  color: #062b8f;
+}
+
+.eyebrow,
+.status-pill,
+.empty-state {
+  background: #dff4ff;
+  color: #062b8f;
+}
+
+.btn-brand,
+.auth-register .btn-brand.w-100 {
+  background: linear-gradient(135deg, #075fc7, #062b8f);
+  border-color: transparent;
+}
+
+.auth-register .auth-panel-logo strong,
+.auth-register .input-shell i,
+.auth-register .auth-links a {
+  color: var(--brand-deep);
+}
+
+.auth-register .btn-brand.w-100,
+.auth-register .register-submit {
+  background: linear-gradient(135deg, var(--brand), var(--brand-deep));
+  border-color: transparent;
+}
+
+.auth-login .auth-panel-logo strong,
+.auth-login .input-shell i,
+.auth-login .auth-links a,
+.auth-login .login-panel-icon {
+  color: var(--brand-deep);
+}
+
+.auth-login .btn-brand.w-100 {
+  background: linear-gradient(135deg, var(--brand), var(--brand-deep));
+  border-color: transparent;
+}
+
+@media (max-width: 900px) {
+  .backoffice-sidebar {
+    min-height: auto;
+    height: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .auth-register .register-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Final dashboard branding pass */
+body,
+body :not(.fa):not(.fa-solid):not(.fa-regular):not(.fa-brands):not(.fa-classic) {
+  font-family: "Lexend", "Segoe UI", sans-serif !important;
+}
+
+.backoffice-sidebar {
+  background:
+    linear-gradient(135deg, #03152e 0%, #063b9f 48%, #00aeef 100%);
+}
+
+.backoffice-nav a,
+.backoffice-logout {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.backoffice-nav a:hover,
+.backoffice-logout:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.backoffice-main {
+  background:
+    linear-gradient(180deg, rgba(223, 244, 255, 0.42), rgba(255, 255, 255, 0) 280px),
+    #f5f7fb;
+}
+
+.backoffice-header h1,
+.panel-card h2,
+.panel-card h3,
+.metric-card strong,
+.client-product-card h3,
+.table-strong,
+.cart-total,
+.mini-list strong,
+.backoffice-user strong {
+  color: #062b8f;
+}
+
+.backoffice-header p,
+.metric-card span,
+.panel-card p,
+.client-product-card p,
+.table-modern th,
+.mini-list span {
+  color: #52677f;
+}
+
+.metric-card,
+.panel-card,
+.client-product-card,
+.payment-option,
+.mini-list li,
+.backoffice-user {
+  border-color: rgba(7, 95, 199, 0.14);
+  box-shadow: 0 18px 44px rgba(6, 43, 143, 0.09);
+}
+
+.metric-card {
+  background:
+    linear-gradient(135deg, rgba(223, 244, 255, 0.92), rgba(255, 255, 255, 0.98)),
+    #ffffff;
+}
+
+.btn-brand,
+.backoffice-page .btn-brand,
+.client-product-card .btn-brand,
+.compact-form .btn-brand,
+.inline-form .btn-brand {
+  background: linear-gradient(135deg, #075fc7, #062b8f);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+.btn-brand:hover,
+.backoffice-page .btn-brand:hover {
+  background: linear-gradient(135deg, #063b9f, #03152e);
+  color: #ffffff;
+}
+
+.btn-soft,
+.backoffice-page .btn-soft {
+  border-color: rgba(7, 95, 199, 0.22);
+  background: #dff4ff;
+  color: #062b8f;
+}
+
+.icon-btn {
+  border-color: rgba(7, 95, 199, 0.22);
+  background: #ffffff;
+  color: #075fc7;
+}
+
+.icon-btn:hover {
+  border-color: rgba(0, 174, 239, 0.38);
+  background: #dff4ff;
+  color: #062b8f;
+  box-shadow: 0 12px 24px rgba(6, 43, 143, 0.1);
+}
+
+.eyebrow,
+.status-pill,
+.empty-state {
+  background: #dff4ff;
+  color: #062b8f;
+}
+
+.payment-option i,
+.home-about-card i,
+.contact-card i {
+  color: #075fc7;
+}
+
+.auth-page.auth-login,
+.auth-page.auth-register {
+  background:
+    linear-gradient(135deg, rgba(0, 174, 239, 0.1), rgba(6, 43, 143, 0.07)),
+    #f4f6f8;
 }

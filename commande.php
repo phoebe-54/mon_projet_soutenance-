@@ -1,12 +1,12 @@
 <?php
-require_once '../../includes/auth_check.php';
+require_once __DIR__ . '/includes/auth_check.php';
 requireRole('client');
-require_once '../../config/database.php';
+require_once __DIR__ . '/config/database.php';
 
 $pageTitle = "Commande";
 $pageLead = "Finalisez votre commande NOCIBE en quelques clics.";
 
-include '../includes/header.php';
+include __DIR__ . '/backoffice/includes/header.php';
 
 /* =========================
    PANIER SESSION
@@ -68,8 +68,8 @@ if (isset($_POST['valider'])) {
     display: inline-flex;
     padding: 10px 16px;
     border-radius: 999px;
-    background: rgba(14,165,233,.12);
-    color: #0ea5e9;
+    background: rgba(7,95,199,.12);
+    color: #075fc7;
     font-weight: 800;
 }
 
@@ -80,7 +80,7 @@ if (isset($_POST['valider'])) {
     margin: 18px 0 10px;
     font-family: "Barlow Condensed", sans-serif;
     font-size: 2.2rem;
-    color: #0ea5e9;
+    color: #075fc7;
 }
 
 /* =========================
@@ -125,7 +125,7 @@ input, textarea {
     font-weight: 900;
     font-size: 1.2rem;
     margin-top: 10px;
-    color: #0ea5e9;
+    color: #075fc7;
 }
 
 /* =========================
@@ -154,7 +154,7 @@ input, textarea {
 }
 
 .btn-primary {
-    background: #0ea5e9;
+    background: #075fc7;
     color: #fff;
 }
 

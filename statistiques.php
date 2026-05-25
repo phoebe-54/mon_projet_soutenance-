@@ -1,7 +1,7 @@
 <?php
-require_once '../../includes/auth_check.php';
+require_once __DIR__ . '/includes/auth_check.php';
 requireRole('client');
-require_once '../../config/database.php';
+require_once __DIR__ . '/config/database.php';
 $client = currentUser();
 
 // $pdo est initialisé dans config/database.php via Database::getConnection()
@@ -69,7 +69,7 @@ if ($statsError === null) {
 
 $dashboardTitle = 'Statistiques';
 $dashboardLead = 'Visualisez vos commandes, livraisons et dépenses en temps réel.';
-include '../includes/header.php';
+include __DIR__ . '/backoffice/includes/header.php';
 ?>
 
 <section style="padding-top:14px;">
@@ -78,26 +78,26 @@ include '../includes/header.php';
     <?php else: ?>
         <div class="client-dashboard-stats" style="margin-top:0;">
             <div class="glass-card" style="padding:22px;border-radius:22px;border:1px solid rgba(148,163,184,.25);background:rgba(255,255,255,.85);">
-                <h5 style="margin:0 0 8px;font-weight:800;color:#0ea5e9;">Commandes</h5>
+                <h5 style="margin:0 0 8px;font-weight:800;color:#075fc7;">Commandes</h5>
                 <div style="font-size:1.8rem;font-weight:900;">#<?= (int)$stats['nb_commandes'] ?></div>
                 <p style="margin:8px 0 0;color:var(--text-soft);">Encours: <?= (int)$stats['commande_encours'] ?></p>
             </div>
 
             <div class="glass-card" style="padding:22px;border-radius:22px;border:1px solid rgba(148,163,184,.25);background:rgba(255,255,255,.85);">
-                <h5 style="margin:0 0 8px;font-weight:800;color:#0ea5e9;">Livraisons</h5>
+                <h5 style="margin:0 0 8px;font-weight:800;color:#075fc7;">Livraisons</h5>
                 <div style="font-size:1.8rem;font-weight:900;">#<?= (int)$stats['nb_livraisons'] ?></div>
                 <p style="margin:8px 0 0;color:var(--text-soft);">Encours: <?= (int)$stats['livraison_encours'] ?></p>
             </div>
 
             <div class="glass-card" style="padding:22px;border-radius:22px;border:1px solid rgba(148,163,184,.25);background:rgba(255,255,255,.85);">
-                <h5 style="margin:0 0 8px;font-weight:800;color:#0ea5e9;">Dépenses</h5>
+                <h5 style="margin:0 0 8px;font-weight:800;color:#075fc7;">Dépenses</h5>
                 <div style="font-size:1.8rem;font-weight:900;"><?= number_format($stats['depenses'], 2, ',', ' ') ?> €</div>
                 <p style="margin:8px 0 0;color:var(--text-soft);">Somme des montants totaux</p>
             </div>
         </div>
 
         <div class="glass-card" style="margin-top:18px;padding:22px;border-radius:22px;border:1px solid rgba(148,163,184,.25);background:rgba(255,255,255,.85);">
-            <h5 style="margin:0 0 12px;font-weight:900;color:#0ea5e9;">Dernières commandes</h5>
+            <h5 style="margin:0 0 12px;font-weight:900;color:#075fc7;">Dernières commandes</h5>
             <?php if (empty($stats['dernieres_commandes'])): ?>
                 <div class="text-muted">Aucune commande trouvée.</div>
             <?php else: ?>

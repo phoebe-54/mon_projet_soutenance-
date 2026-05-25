@@ -1,5 +1,5 @@
 <?php
-require_once '../../includes/auth_check.php';
+require_once __DIR__ . '/includes/auth_check.php';
 requireRole('client');
 
 $suiviTitle = 'Suivi';
@@ -7,7 +7,7 @@ $suiviLead = 'Suivez vos livraisons NOCIBE en temps réel.';
 
 $currentUser = currentUser();
 
-include '../includes/header.php';
+include __DIR__ . '/backoffice/includes/header.php';
 ?>
 
 <style>
@@ -55,9 +55,9 @@ include '../includes/header.php';
 
         border-radius:999px;
 
-        background:rgba(14,165,233,.12);
+        background:rgba(7,95,199,.12);
 
-        color:#0ea5e9;
+        color:#075fc7;
 
         font-size:.82rem;
         font-weight:800;
@@ -70,7 +70,7 @@ include '../includes/header.php';
         font-family:"Barlow Condensed",sans-serif;
         font-weight:800;
 
-        color:#0ea5e9;
+        color:#075fc7;
 
         font-size:clamp(2rem,4vw,2.8rem);
 
@@ -124,7 +124,7 @@ include '../includes/header.php';
     }
 
     .suivi-btn-refresh{
-        background:#0ea5e9;
+        background:#075fc7;
         color:#ffffff;
     }
 
@@ -220,9 +220,9 @@ include '../includes/header.php';
     .suivi-card:hover{
         transform:translateY(-2px);
 
-        border-color:rgba(14,165,233,.4);
+        border-color:rgba(7,95,199,.35);
 
-        background:rgba(14,165,233,.03);
+        background:rgba(7,95,199,.03);
     }
 
     .suivi-top{
@@ -280,8 +280,8 @@ include '../includes/header.php';
     }
 
     .status-route{
-        background:rgba(14,165,233,.12);
-        color:#0ea5e9;
+        background:rgba(7,95,199,.12);
+        color:#075fc7;
     }
 
     .status-livree{
@@ -326,7 +326,7 @@ include '../includes/header.php';
 
         margin-top:4px;
 
-        background:#0ea5e9;
+        background:#075fc7;
 
         flex-shrink:0;
     }

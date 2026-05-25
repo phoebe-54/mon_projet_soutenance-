@@ -1,7 +1,7 @@
 <?php
-require_once '../../includes/auth_check.php';
+require_once __DIR__ . '/includes/auth_check.php';
 requireRole('client');
-require_once '../../config/database.php';
+require_once __DIR__ . '/config/database.php';
 
 $client = currentUser();
 $clientId = (int)($client['id_user'] ?? ($client['id_client'] ?? 0));
@@ -34,7 +34,7 @@ if ($err === null) {
 
 $dashboardTitle = 'Historique';
 $dashboardLead = 'Consultez vos achats passés et vos factures.';
-include '../includes/header.php';
+include __DIR__ . '/backoffice/includes/header.php';
 ?>
 
 <section style="padding-top:14px;">
@@ -42,7 +42,7 @@ include '../includes/header.php';
         <div class="alert alert-danger"><?= htmlspecialchars($err) ?></div>
     <?php else: ?>
         <div class="glass-card" style="padding:22px;border-radius:22px;border:1px solid rgba(148,163,184,.25);background:rgba(255,255,255,.85);">
-            <h5 style="margin:0 0 12px;font-weight:900;color:#0ea5e9;">Achats passés</h5>
+            <h5 style="margin:0 0 12px;font-weight:900;color:#075fc7;">Achats passés</h5>
             <?php if (empty($commandes)): ?>
                 <div class="text-muted">Aucun achat trouvé.</div>
             <?php else: ?>
@@ -72,7 +72,7 @@ include '../includes/header.php';
         </div>
 
         <div class="glass-card" style="margin-top:18px;padding:22px;border-radius:22px;border:1px solid rgba(148,163,184,.25);background:rgba(255,255,255,.85);">
-            <h5 style="margin:0 0 12px;font-weight:900;color:#0ea5e9;">Factures (paiements)</h5>
+            <h5 style="margin:0 0 12px;font-weight:900;color:#075fc7;">Factures (paiements)</h5>
             <?php if (empty($factures)): ?>
                 <div class="text-muted">Aucune facture trouvée.</div>
             <?php else: ?>

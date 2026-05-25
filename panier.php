@@ -1,11 +1,11 @@
 <?php
-require_once '../../includes/auth_check.php';
+require_once __DIR__ . '/includes/auth_check.php';
 requireRole('client');
 
 $pageTitle = "Mon Panier";
 $pageLead = "Vérifiez vos produits sélectionnés avant commande.";
 
-include '../includes/header.php';
+include __DIR__ . '/backoffice/includes/header.php';
 
 /* PANIER SESSION */
 if (!isset($_SESSION['panier'])) {
@@ -57,8 +57,8 @@ $total = 0;
     display: inline-flex;
     padding: 10px 16px;
     border-radius: 999px;
-    background: rgba(14,165,233,.12);
-    color: #0ea5e9;
+    background: rgba(7,95,199,.12);
+    color: #075fc7;
     font-size: .82rem;
     font-weight: 800;
 }
@@ -67,7 +67,7 @@ $total = 0;
     margin: 18px 0 12px;
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 800;
-    color: #0ea5e9;
+    color: #075fc7;
     font-size: clamp(2rem,4vw,2.6rem);
     line-height: 1;
 }
@@ -105,7 +105,7 @@ $total = 0;
 }
 
 .cart-btn-primary {
-    background: #0ea5e9;
+    background: #075fc7;
     color: #fff;
 }
 
@@ -160,7 +160,7 @@ $total = 0;
 
 .cart-card:hover {
     transform: translateY(-3px);
-    border-color: rgba(14,165,233,.4);
+    border-color: rgba(7,95,199,.35);
 }
 
 .cart-card-image {
@@ -184,7 +184,7 @@ $total = 0;
 }
 
 .cart-price {
-    color: #0ea5e9;
+    color: #075fc7;
     font-weight: 900;
     font-size: 1.1rem;
 }
@@ -205,7 +205,7 @@ $total = 0;
     height: 30px;
     border: none;
     border-radius: 8px;
-    background: #0ea5e9;
+    background: #075fc7;
     color: #fff;
     font-weight: 900;
     cursor: pointer;

@@ -1,162 +1,144 @@
 <?php
-require_once '../../includes/auth_check.php';
-requireRole('client');
-require_once '../../config/database.php';
-
-$dashboardTitle = 'Bienvenue chez NOCIBE';
-$dashboardLead = 'Gérez votre catalogue, composez votre panier et suivez vos livraisons en temps réel.';
-
-$currentUser = currentUser();
-include '../includes/header.php';
+$pageTitle = 'Accueil';
+$basePath = '';
+$bodyClass = 'site-shell homepage-bg';
+include 'includes/header.php';
 ?>
 
-<style>
-    .client-dashboard-live {
-        padding-top: 14px;
-    }
-
-    .client-dashboard-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
-        gap: 22px;
-        align-items: stretch;
-        margin-top: 10px;
-    }
-
-    .client-dashboard-hero-copy {
-        background: rgba(255, 255, 255, 0.92);
-        border: 1px solid rgba(226, 232, 240, 0.95);
-        border-radius: 22px;
-        padding: 26px;
-        box-shadow: var(--shadow-md);
-    }
-
-    .client-dashboard-hero-copy h2 {
-        margin: 14px 0 10px;
-        font-family: "Barlow Condensed", sans-serif;
-        font-weight: 800;
-        color: #0ea5e9;
-        font-size: clamp(1.8rem, 3.2vw, 2.4rem);
-        line-height: 1.05;
-    }
-
-    .client-dashboard-hero-copy p {
-        margin: 0;
-        color: var(--text-soft);
-        line-height: 1.8;
-    }
-
-    .client-dashboard-actions {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-top: 18px;
-    }
-
-    .client-dashboard-hero-visual {
-        position: relative;
-        background: rgba(255, 255, 255, 0.6);
-        border: 1px solid rgba(226, 232, 240, 0.95);
-        border-radius: 22px;
-        padding: 14px;
-        box-shadow: var(--shadow-md);
-        overflow: hidden;
-        min-height: 280px;
-    }
-
-    /* image en arrière-plan (moins "trop") */
-    .client-dashboard-hero-visual::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: url('../../images/home-hero-clean.png') center/cover no-repeat;
-        opacity: 0.35;
-        transform: scale(1.04);
-        filter: saturate(1.05) contrast(1.02);
-    }
-
-    .client-dashboard-hero-visual::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,.25) 60%, rgba(255,255,255,.65) 100%);
-    }
-
-    /* image claire : on la rend visible mais derrière le texte/carte */
-    .client-dashboard-hero-visual img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        opacity: 1;
-        z-index: 0;
-        /* rendu clair et net */
-        image-rendering: auto;
-        filter: none;
-        transform: translateZ(0);
-    }
-
-
-    /* overlay pour que la carte/copy reste lisible */
-    .client-dashboard-hero-visual::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.30) 55%, rgba(255,255,255,0.78) 100%);
-        z-index: 1;
-    }
-
-    /* l’image de fond pseudo-élément devient inutile */
-    .client-dashboard-hero-visual::before {
-        opacity: 0;
-    }
-
-
-
-    .client-dashboard-stats {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-        margin-top: 18px;
-    }
-
-    @media (max-width: 992px) {
-        .client-dashboard-hero {
-            grid-template-columns: 1fr;
-        }
-
-        .client-dashboard-stats {
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
-
-<section class="client-dashboard-live">
-    <div class="client-dashboard-hero">
-        <div class="client-dashboard-hero-visual">
-            <img src="../../assets/images/home-hero-clean.png" alt="NOCIBE" />
+<section class="hero-section-nocibe">
+    <div class="home-hero-inner">
+        <div class="home-hero-copy">
+            <span class="home-hero-welcome">Bienvenue &agrave; NOCIBE S.A</span>
+            <h1>Plateforme de commande et de suivi de ciment.</h1>
+            <p>
+                Une solution simple pour commander vos ciments et suivre vos livraisons
+                depuis un espace fiable et adapt&eacute; aux professionnels.
+            </p>
+        </div>
+        <div class="home-hero-actions">
+            <a href="login.php?login_required=order" class="btn btn-brand home-action-btn">
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                Commencer
+            </a>
         </div>
     </div>
-
-    <div class="client-dashboard-stats"></div>
-
 </section>
 
-<style>
-    .client-dashboard-link{
-        display:block;
-        transition:transform .15s ease, border-color .15s ease, background .15s ease;
-    }
-    .client-dashboard-link:hover{
-        transform: translateY(-2px);
-        border-color: rgba(0, 212, 255, .45);
-        background: rgba(0, 212, 255, .08);
-    }
-</style>
+<main class="site-container">
 
+    <section class="home-about-section" aria-labelledby="about-nocibe">
+        <div class="overview-title">
+            <h2 id="about-nocibe">À propos de NOCIBE</h2>
+            <p>Notre mission est de simplifier l'achat de ciment avec une plateforme moderne et fiable.</p>
+        </div>
 
-</body>
-</html>
+        <div class="home-about-grid">
+            <article class="home-about-card">
+                <img src="assets/images/Copilot_20260522_224259.png" alt="Production locale NOCIBE">
+                <i class="fa-solid fa-industry" aria-hidden="true"></i>
+                <h3>Production locale</h3>
+                <p>NOCIBE produit du ciment de qualité directement accessible en ligne pour les professionnels et particuliers.</p>
+            </article>
+            <article class="home-about-card">
+                <img src="assets/images/livraison.png" alt="Livraison rapide NOCIBE">
+                <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+                <h3>Livraison rapide</h3>
+                <p>Nous proposons une livraison en 24-72h selon les zones, avec un suivi de commande clair.</p>
+            </article>
+            <article class="home-about-card">
+                <img src="assets/images/Copilot_20260519_220721.png" alt="Support dédié NOCIBE">
+                <i class="fa-solid fa-headset" aria-hidden="true"></i>
+                <h3>Support dédié</h3>
+                <p>Une équipe à l'écoute vous accompagne pour le choix du produit et le suivi de votre commande.</p>
+            </article>
+        </div>
+    </section>
 
+    <section class="home-process-section" id="how-it-works">
+        <div class="overview-title">
+            <h2>Comment ça marche</h2>
+            <p>Un parcours simple, penser pour les clients et les gestionnaires</p>
+        </div>
+
+        <div class="home-process-grid">
+            <article class="home-process-card">
+                <span>01</span>
+                <div class="home-process-visual">
+                    <img src="assets/images/Copilot_20260521_123914.png" alt="Gamme de produits ciment NOCIBE">
+                </div>
+                <i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i>
+                <h3>Choisir les produits</h3>
+                <p>Consultez les types de ciment disponibles et selectionnez la quantite souhaitee.</p>
+            </article>
+
+            <article class="home-process-card">
+                <span>02</span>
+                <div class="home-process-visual">
+                    <img src="assets/images/Copilot_20260525_131124.png" onerror="this.onerror=null;this.src='assets/images/Copilot_20260522_140442.png';" alt="Validation de commande NOCIBE">
+                </div>
+                <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
+                <h3>Passer commande</h3>
+                <p>Remplissez les informations de livraison et validez votre demande en quelques clics.</p>
+            </article>
+
+            <article class="home-process-card">
+                <span>03</span>
+                <div class="home-process-visual">
+                    <img src="assets/images/payment-nocibe-command.png" alt="Paiement en ligne securise NOCIBE">
+                </div>
+                <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+                <h3>Payer en ligne</h3>
+                <p>Effectuez votre paiement de maniere securisee et recevez la confirmation.</p>
+            </article>
+
+            <article class="home-process-card">
+                <span>04</span>
+                <div class="home-process-visual">
+                    <img src="assets/images/Copilot_20260522_133429.png" alt="Camion de livraison NOCIBE">
+                </div>
+                <i class="fa-solid fa-route" aria-hidden="true"></i>
+                <h3>Suivre la livraison</h3>
+                <p>Gardez une vue claire sur l'etat de votre commande jusqu'a la reception.</p>
+            </article>
+        </div>
+    </section>
+    <section class="home-support-section" id="support">
+        <div>
+            <span class="home-hero-kicker">Support client</span>
+            <h2>Besoin d'aide pour une commande ?</h2>
+            <p>
+                Notre equipe vous accompagne pour le choix du produit et le suivi de votre commande.
+            </p>
+        </div>
+        <a href="login.php?login_required=order" class="btn btn-brand home-support-btn">
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            Commander maintenant
+        </a>
+    </section>
+
+    <section class="home-contact-section" aria-labelledby="contact-nocibe">
+        <div class="overview-title">
+            <h2 id="contact-nocibe">Contact</h2>
+            <p>Contactez-nous pour toute question sur les produits, les commandes ou la livraison.</p>
+        </div>
+        <div class="contact-grid">
+            <article class="contact-card">
+                <i class="fa-solid fa-phone"></i>
+                <h3>Téléphone</h3>
+                <p>(+229) 01 21 50 00 42<br>(+229) 01 21 31 55 13</p>
+            </article>
+            <article class="contact-card">
+                <i class="fa-solid fa-envelope"></i>
+                <h3>Email</h3>
+                <p>contact@nocibe.com</p>
+            </article>
+            <article class="contact-card">
+                <i class="fa-solid fa-map-marker-alt"></i>
+                <h3>Adresse</h3>
+                <p>Villa N°11, Résidence Akarade<br>08 BP 1024<br>Cotonou - Bénin</p>
+            </article>
+        </div>
+    </section>
+</main>
+
+<?php include 'includes/footer.php'; ?>
