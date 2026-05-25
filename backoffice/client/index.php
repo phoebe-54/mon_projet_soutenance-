@@ -4,8 +4,8 @@ $currentUser = requireRole('client');
 require_once '../../config/database.php';
 
 $clientId = (int) $currentUser['id_user'];
-$message = '';
-$error = '';
+$message = trim($_GET['success'] ?? '');
+$error = trim($_GET['error'] ?? '');
 
 if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
@@ -43,6 +43,18 @@ function cartTotal(array $cart, array $productsById): float
     return $total;
 }
 
+function redirectWithFlash(string $type, string $message, string $section = ''): void
+{
+    $fragment = preg_replace('/[^a-zA-Z0-9_-]/', '', $section);
+    header('Location: index.php?' . http_build_query([$type => $message]) . ($fragment ? '#' . $fragment : ''));
+    exit;
+}
+
+function detailsFor(array $detailsByOrder, int $orderId): array
+{
+    return $detailsByOrder[$orderId] ?? [];
+}
+
 ensureClientColumn($pdo, 'produit', 'image_url', 'VARCHAR(255) NULL');
 
 $products = $pdo->query('SELECT p.*, c.nom_categorie FROM produit p LEFT JOIN categorie c ON c.id_categorie = p.id_categorie ORDER BY p.nom_produit')->fetchAll();
@@ -51,7 +63,7 @@ foreach ($products as $product) {
     $productsById[(int) $product['id_produit']] = $product;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
     $action = $_POST['action'] ?? '';
 
     try {
@@ -118,18 +130,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ]);
             }
 
-            $deliveryUserId = (int) ($pdo->query('SELECT id_user FROM livreur LIMIT 1')->fetchColumn() ?: $clientId);
-            $address = trim($_POST['adresse_livraison'] ?? '') ?: 'Adresse a confirmer';
-            $pdo->prepare('INSERT INTO livraison (adresse_livraison, statut_livraison, id_commande, id_user) VALUES (:adresse, :statut, :id_commande, :id_user)')->execute([
-                'adresse' => $address,
-                'statut' => 'En attente',
-                'id_commande' => $orderId,
-                'id_user' => $deliveryUserId,
-            ]);
+            $address = trim($_POST['adresse_livraison'] ?? '');
+            if ($address !== '') {
+                $pdo->prepare('UPDATE client SET adresse = :adresse WHERE id_user = :id_user')->execute([
+                    'adresse' => $address,
+                    'id_user' => $clientId,
+                ]);
+            }
 
             $_SESSION['cart'] = [];
             $pdo->commit();
-            $message = 'Commande #' . $orderId . ' enregistree.';
+            redirectWithFlash('success', 'Commande #' . $orderId . ' enregistree. Vous pouvez maintenant effectuer le paiement.', 'commandes');
         } elseif ($action === 'pay_order') {
             $orderId = (int) ($_POST['id_commande'] ?? 0);
             $mode = $_POST['mode_paiement'] ?? 'FedaPay - Mobile Money';
@@ -140,19 +151,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 throw new RuntimeException('Commande introuvable.');
             }
 
+            $paidStmt = $pdo->prepare("SELECT 1 FROM paiement WHERE id_commande = :id_commande AND statut_paiement = 'Paye' LIMIT 1");
+            $paidStmt->execute(['id_commande' => $orderId]);
+            if ($paidStmt->fetchColumn()) {
+                throw new RuntimeException('Cette commande est deja payee.');
+            }
+
             $pdo->prepare('INSERT INTO paiement (mode_paiement, statut_paiement, id_commande) VALUES (:mode, :statut, :id_commande)')->execute([
                 'mode' => $mode,
                 'statut' => 'Paye',
                 'id_commande' => $orderId,
             ]);
             $pdo->prepare("UPDATE commande SET statut_commande = 'Confirmee' WHERE id_commande = :id_commande")->execute(['id_commande' => $orderId]);
-            $message = 'Paiement FedaPay enregistre.';
+            redirectWithFlash('success', 'Paiement FedaPay enregistre. Votre commande est confirmee.', 'paiements');
+        } elseif ($action === 'update_profile') {
+            $nom = trim($_POST['nom'] ?? '');
+            $prenom = trim($_POST['prenom'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $telephone = trim($_POST['telephone'] ?? '');
+            $adresse = trim($_POST['adresse'] ?? '');
+
+            if ($nom === '' || $email === '') {
+                throw new RuntimeException('Le nom et email sont obligatoires.');
+            }
+
+            $pdo->beginTransaction();
+            $pdo->prepare('UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email, telephone = :telephone WHERE id_user = :id_user')->execute([
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'email' => $email,
+                'telephone' => $telephone,
+                'id_user' => $clientId,
+            ]);
+            $pdo->prepare('UPDATE client SET adresse = :adresse WHERE id_user = :id_user')->execute([
+                'adresse' => $adresse,
+                'id_user' => $clientId,
+            ]);
+            $_SESSION['nom'] = trim($prenom . ' ' . $nom);
+            $_SESSION['email'] = $email;
+            if (!empty($_SESSION['user']) && is_array($_SESSION['user'])) {
+                $_SESSION['user']['nom'] = $nom;
+                $_SESSION['user']['prenom'] = $prenom;
+                $_SESSION['user']['email'] = $email;
+            }
+            $pdo->commit();
+            redirectWithFlash('success', 'Informations personnelles mises a jour.', 'profil');
         }
     } catch (Throwable $exception) {
         if ($pdo->inTransaction()) {
             $pdo->rollBack();
         }
-        $error = 'Operation impossible : ' . $exception->getMessage();
+        redirectWithFlash('error', 'Operation impossible : ' . $exception->getMessage(), $_POST['redirect_section'] ?? '');
     }
 }
 
@@ -175,18 +224,32 @@ $orders = $ordersStmt->fetchAll();
 $detailsStmt = $pdo->prepare('SELECT lc.*, p.nom_produit FROM ligne_commande lc JOIN produit p ON p.id_produit = lc.id_produit JOIN commande c ON c.id_commande = lc.id_commande WHERE c.id_client = :id_client ORDER BY lc.id_commande DESC');
 $detailsStmt->execute(['id_client' => $clientId]);
 $orderDetails = $detailsStmt->fetchAll();
+$detailsByOrder = [];
+foreach ($orderDetails as $detail) {
+    $detailsByOrder[(int) $detail['id_commande']][] = $detail;
+}
 
-$paymentsListStmt = $pdo->prepare('SELECT p.* FROM paiement p JOIN commande c ON c.id_commande = p.id_commande WHERE c.id_client = :id_client ORDER BY p.date_paiement DESC');
+$paymentsListStmt = $pdo->prepare('SELECT p.*, c.montant_total FROM paiement p JOIN commande c ON c.id_commande = p.id_commande WHERE c.id_client = :id_client ORDER BY p.date_paiement DESC');
 $paymentsListStmt->execute(['id_client' => $clientId]);
 $payments = $paymentsListStmt->fetchAll();
+$paidOrders = [];
+foreach ($payments as $payment) {
+    if ($payment['statut_paiement'] === 'Paye') {
+        $paidOrders[(int) $payment['id_commande']] = true;
+    }
+}
 
 $deliveriesListStmt = $pdo->prepare('SELECT l.* FROM livraison l JOIN commande c ON c.id_commande = l.id_commande WHERE c.id_client = :id_client ORDER BY l.id_livraison DESC');
 $deliveriesListStmt->execute(['id_client' => $clientId]);
 $deliveries = $deliveriesListStmt->fetchAll();
 
+$profileStmt = $pdo->prepare('SELECT u.*, cl.adresse FROM utilisateur u JOIN client cl ON cl.id_user = u.id_user WHERE u.id_user = :id_user LIMIT 1');
+$profileStmt->execute(['id_user' => $clientId]);
+$profile = $profileStmt->fetch() ?: [];
+
 $cartTotal = cartTotal($_SESSION['cart'], $productsById);
 
-$dashboardTitle = 'Dashboard client';
+$dashboardTitle = 'Espace client';
 $dashboardLead = 'Commandes, panier, paiements FedaPay et suivi de livraison.';
 include '../includes/header.php';
 ?>
@@ -194,11 +257,11 @@ include '../includes/header.php';
 <?php if ($message): ?><div class="alert alert-success"><?= htmlspecialchars($message) ?></div><?php endif; ?>
 <?php if ($error): ?><div class="alert alert-danger"><?= htmlspecialchars($error) ?></div><?php endif; ?>
 
-<section class="dashboard-summary-grid">
-    <article class="metric-card"><strong><?= (int) $stats['orders_count'] ?></strong><span>Commandes</span></article>
-    <article class="metric-card"><strong><?= number_format((float) $stats['orders_total'], 0, ',', ' ') ?> FCFA</strong><span>Total commande</span></article>
-    <article class="metric-card"><strong><?= $paymentCount ?></strong><span>Paiements</span></article>
-    <article class="metric-card"><strong><?= $deliveryCount ?></strong><span>Livraisons actives</span></article>
+<section class="dashboard-summary-grid admin-dashboard-grid" id="dashboard">
+    <article class="metric-card admin-metric-card"><i class="fa-solid fa-receipt"></i><strong><?= (int) $stats['orders_count'] ?></strong><span>Commandes</span></article>
+    <article class="metric-card admin-metric-card"><i class="fa-solid fa-coins"></i><strong><?= number_format((float) $stats['orders_total'], 0, ',', ' ') ?> FCFA</strong><span>Total commande</span></article>
+    <article class="metric-card admin-metric-card"><i class="fa-solid fa-credit-card"></i><strong><?= $paymentCount ?></strong><span>Paiements</span></article>
+    <article class="metric-card admin-metric-card"><i class="fa-solid fa-truck-fast"></i><strong><?= $deliveryCount ?></strong><span>Livraisons actives</span></article>
 </section>
 
 <section class="workspace-grid dashboard-section" id="panier">
@@ -249,7 +312,8 @@ include '../includes/header.php';
                 <?php endforeach; ?>
                 <form class="compact-form mt-3" method="POST">
                     <input type="hidden" name="action" value="checkout">
-                    <input class="form-control" name="adresse_livraison" placeholder="Adresse de livraison">
+                    <input type="hidden" name="redirect_section" value="panier">
+                    <input class="form-control" name="adresse_livraison" value="<?= htmlspecialchars($profile['adresse'] ?? '') ?>" placeholder="Adresse de livraison">
                     <button class="btn btn-brand" type="submit"><i class="fa-solid fa-check"></i> Passer la commande</button>
                 </form>
             <?php endif; ?>
@@ -271,23 +335,31 @@ include '../includes/header.php';
                         <td class="table-strong"><?= number_format((float) $order['montant_total'], 0, ',', ' ') ?> FCFA</td>
                         <td><span class="status-pill status-pending"><?= htmlspecialchars($order['statut_commande']) ?></span></td>
                         <td>
-                            <?php foreach ($orderDetails as $detail): ?>
-                                <?php if ((int) $detail['id_commande'] === (int) $order['id_commande']): ?>
-                                    <div><?= htmlspecialchars($detail['nom_produit']) ?> x <?= (int) $detail['quantite'] ?></div>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                            <details class="admin-edit-panel">
+                                <summary class="btn btn-soft">Voir detail</summary>
+                                <div class="compact-form mt-2">
+                                    <?php foreach (detailsFor($detailsByOrder, (int) $order['id_commande']) as $detail): ?>
+                                        <div><?= htmlspecialchars($detail['nom_produit']) ?> x <?= (int) $detail['quantite'] ?> - <?= number_format((float) $detail['sous_total'], 0, ',', ' ') ?> FCFA</div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </details>
                         </td>
                         <td>
-                            <form class="inline-form" method="POST">
-                                <input type="hidden" name="action" value="pay_order">
-                                <input type="hidden" name="id_commande" value="<?= (int) $order['id_commande'] ?>">
-                                <select class="form-select" name="mode_paiement">
-                                    <option>FedaPay - MTN MoMo</option>
-                                    <option>FedaPay - Moov Money</option>
-                                    <option>FedaPay - Carte bancaire</option>
-                                </select>
-                                <button class="icon-btn" title="Payer"><i class="fa-solid fa-credit-card"></i></button>
-                            </form>
+                            <?php if (!isset($paidOrders[(int) $order['id_commande']])): ?>
+                                <form class="inline-form" method="POST">
+                                    <input type="hidden" name="action" value="pay_order">
+                                    <input type="hidden" name="redirect_section" value="paiements">
+                                    <input type="hidden" name="id_commande" value="<?= (int) $order['id_commande'] ?>">
+                                    <select class="form-select" name="mode_paiement">
+                                        <option>FedaPay - MTN MoMo</option>
+                                        <option>FedaPay - Moov Money</option>
+                                        <option>FedaPay - Carte bancaire</option>
+                                    </select>
+                                    <button class="icon-btn" title="Payer"><i class="fa-solid fa-credit-card"></i></button>
+                                </form>
+                            <?php else: ?>
+                                <span class="status-pill status-pill-admin">Paye</span>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -299,21 +371,45 @@ include '../includes/header.php';
     <aside class="panel-stack">
         <article class="panel-card" id="paiements">
             <h2>Paiements</h2>
-            <ul class="mini-list">
-                <?php foreach ($payments as $payment): ?>
-                    <li><span>#<?= (int) $payment['id_commande'] ?> <?= htmlspecialchars($payment['mode_paiement']) ?></span><strong><?= htmlspecialchars($payment['statut_paiement']) ?></strong></li>
-                <?php endforeach; ?>
-            </ul>
+            <?php if (!$payments): ?>
+                <div class="empty-state">Aucun paiement enregistre.</div>
+            <?php else: ?>
+                <ul class="mini-list">
+                    <?php foreach ($payments as $payment): ?>
+                        <li><span>#<?= (int) $payment['id_commande'] ?> <?= htmlspecialchars($payment['mode_paiement']) ?><br><small><?= number_format((float) $payment['montant_total'], 0, ',', ' ') ?> FCFA</small></span><strong><?= htmlspecialchars($payment['statut_paiement']) ?></strong></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
         </article>
         <article class="panel-card" id="livraisons">
-            <h2>Livraisons</h2>
-            <ul class="mini-list">
-                <?php foreach ($deliveries as $delivery): ?>
-                    <li><span>#<?= (int) $delivery['id_commande'] ?> <?= htmlspecialchars($delivery['adresse_livraison']) ?></span><strong><?= htmlspecialchars($delivery['statut_livraison']) ?></strong></li>
-                <?php endforeach; ?>
-            </ul>
+            <h2>Suivi livraison</h2>
+            <?php if (!$deliveries): ?>
+                <div class="empty-state">Aucune livraison creee pour le moment. Elle apparaitra apres traitement commercial.</div>
+            <?php else: ?>
+                <ul class="mini-list">
+                    <?php foreach ($deliveries as $delivery): ?>
+                        <li><span>#<?= (int) $delivery['id_commande'] ?> <?= htmlspecialchars($delivery['adresse_livraison']) ?><br><small>Derniere mise a jour : <?= htmlspecialchars($delivery['date_livraison'] ?? 'En cours') ?></small></span><strong><?= htmlspecialchars($delivery['statut_livraison']) ?></strong></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
         </article>
     </aside>
+</section>
+
+<section class="dashboard-section admin-section" id="profil">
+    <article class="panel-card">
+        <h2>Informations personnelles</h2>
+        <form class="compact-form" method="POST">
+            <input type="hidden" name="action" value="update_profile">
+            <input type="hidden" name="redirect_section" value="profil">
+            <input class="form-control" name="nom" value="<?= htmlspecialchars($profile['nom'] ?? '') ?>" placeholder="Nom" required>
+            <input class="form-control" name="prenom" value="<?= htmlspecialchars($profile['prenom'] ?? '') ?>" placeholder="Prenom">
+            <input class="form-control" type="email" name="email" value="<?= htmlspecialchars($profile['email'] ?? '') ?>" placeholder="Email" required>
+            <input class="form-control" name="telephone" value="<?= htmlspecialchars($profile['telephone'] ?? '') ?>" placeholder="Telephone">
+            <textarea class="form-control" name="adresse" placeholder="Adresse"><?= htmlspecialchars($profile['adresse'] ?? '') ?></textarea>
+            <button class="btn btn-brand" type="submit">Mettre a jour</button>
+        </form>
+    </article>
 </section>
 
         </main>

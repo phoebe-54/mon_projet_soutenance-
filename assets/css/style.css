@@ -5061,6 +5061,7 @@ body :not(.fa):not(.fa-solid):not(.fa-regular):not(.fa-brands):not(.fa-classic) 
   border-color: rgba(7, 95, 199, 0.22);
   background: #ffffff;
   color: #075fc7;
+  cursor: pointer;
 }
 
 .icon-btn:hover {
@@ -5088,4 +5089,394 @@ body :not(.fa):not(.fa-solid):not(.fa-regular):not(.fa-brands):not(.fa-classic) 
   background:
     linear-gradient(135deg, rgba(0, 174, 239, 0.1), rgba(6, 43, 143, 0.07)),
     #f4f6f8;
+}
+
+/* Admin command center */
+.backoffice-page .backoffice-header {
+  margin-bottom: 20px;
+}
+
+.admin-dashboard-grid {
+  margin-bottom: 18px;
+}
+
+.admin-metric-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 132px;
+  padding: 22px;
+  border-radius: 8px;
+}
+
+.admin-metric-card::after {
+  content: "";
+  position: absolute;
+  right: -38px;
+  bottom: -52px;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background: rgba(0, 174, 239, 0.14);
+}
+
+.admin-metric-card > i {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #075fc7, #00aeef);
+  box-shadow: 0 14px 28px rgba(7, 95, 199, 0.18);
+}
+
+.admin-metric-card strong {
+  display: block;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  line-height: 1.05;
+}
+
+.admin-metric-card span {
+  display: block;
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+.admin-section {
+  scroll-margin-top: 32px;
+  margin-top: 18px;
+}
+
+.backoffice-page .dashboard-section,
+.backoffice-page .panel-card + .panel-card {
+  margin-top: 18px;
+}
+
+.backoffice-page .workspace-grid,
+.backoffice-page .panel-stack,
+.backoffice-page .dashboard-summary-grid {
+  gap: 18px;
+}
+
+.admin-section .panel-card {
+  border-radius: 8px;
+  padding: 22px;
+  background:
+    linear-gradient(180deg, rgba(223, 244, 255, 0.38), rgba(255, 255, 255, 0) 150px),
+    #ffffff;
+}
+
+.admin-section .panel-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 1.16rem;
+}
+
+.admin-section .panel-card h2::before {
+  content: "";
+  width: 10px;
+  height: 28px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #00aeef, #075fc7);
+}
+
+.admin-filter-note {
+  margin: -4px 0 12px;
+  color: #52677f;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.backoffice-page .product-form-card {
+  position: static;
+  top: auto;
+}
+
+.backoffice-page #produits {
+  margin-bottom: 0;
+}
+
+.backoffice-page #paiements {
+  margin-top: 18px;
+}
+
+.backoffice-page #produits > .panel-card,
+.backoffice-page #produits > .panel-stack,
+.backoffice-page #paiements > .panel-card {
+  margin-top: 0;
+}
+
+.admin-dashboard-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.admin-stack-section {
+  display: grid;
+  gap: 18px;
+}
+
+.admin-products-section {
+  display: grid;
+  gap: 18px;
+}
+
+.admin-product-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.admin-products-section .panel-card,
+.admin-product-actions .panel-card {
+  margin-top: 0 !important;
+}
+
+.admin-product-actions .panel-card {
+  height: 100%;
+}
+
+.admin-product-actions .compact-form {
+  height: calc(100% - 44px);
+  display: grid;
+  align-content: stretch;
+}
+
+.admin-product-actions .compact-form .btn-brand {
+  align-self: end;
+  margin-top: auto;
+}
+
+.admin-product-actions .panel-card:not(.product-form-card) .compact-form {
+  padding-top: 18px;
+}
+
+.admin-section .table-shell {
+  border-radius: 8px;
+  border: 1px solid rgba(7, 95, 199, 0.12);
+  background: #ffffff;
+  overflow: auto;
+}
+
+.admin-section .table-modern {
+  margin: 0;
+}
+
+.admin-section .table-modern th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: #062b8f;
+  background: #eaf8ff;
+  border-bottom: 1px solid rgba(7, 95, 199, 0.12);
+}
+
+.admin-section .table-modern td {
+  vertical-align: top;
+}
+
+.admin-section .table-modern tbody tr:hover {
+  background: rgba(223, 244, 255, 0.42);
+}
+
+.status-pill-admin {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 10px;
+  border: 1px solid rgba(7, 95, 199, 0.14);
+  border-radius: 999px;
+  color: #062b8f;
+  background: #dff4ff;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.admin-edit-panel {
+  position: relative;
+  display: inline-block;
+}
+
+.admin-edit-panel summary {
+  list-style: none;
+}
+
+.admin-edit-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.admin-inline-editor {
+  position: fixed;
+  right: 24px;
+  top: 92px;
+  z-index: 80;
+  width: min(420px, 86vw);
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+  padding: 14px;
+  border: 1px solid rgba(7, 95, 199, 0.16);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 22px 55px rgba(6, 43, 143, 0.18);
+}
+
+.admin-inline-editor textarea {
+  min-height: 92px;
+}
+
+.row-actions,
+.product-management-table td:last-child,
+.mini-list li {
+  align-items: flex-start;
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.product-management-table td:last-child {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.icon-btn-danger {
+  color: #b42318;
+  border-color: rgba(180, 35, 24, 0.22);
+}
+
+.icon-btn-danger:hover {
+  color: #ffffff;
+  background: #b42318;
+  border-color: #b42318;
+}
+
+.admin-section .compact-form .form-control,
+.admin-section .compact-form .form-select,
+.admin-section .inline-form .form-control,
+.admin-section .inline-form .form-select {
+  border-color: rgba(7, 95, 199, 0.18);
+  box-shadow: none;
+}
+
+.admin-section .compact-form .form-control:focus,
+.admin-section .compact-form .form-select:focus,
+.admin-section .inline-form .form-control:focus,
+.admin-section .inline-form .form-select:focus {
+  border-color: rgba(0, 174, 239, 0.78);
+  box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.14);
+}
+
+@media (max-width: 900px) {
+  .admin-dashboard-overview,
+  .admin-product-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-inline-editor {
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    top: 84px;
+    width: auto;
+    max-height: calc(100vh - 110px);
+    overflow: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .backoffice-main {
+    padding: 14px;
+  }
+
+  .backoffice-sidebar {
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .backoffice-brand {
+    padding: 4px 4px 12px;
+  }
+
+  .backoffice-brand img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .backoffice-brand-text strong {
+    font-size: 1.2rem;
+  }
+
+  .backoffice-brand-text small {
+    font-size: 0.65rem;
+  }
+
+  .backoffice-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .backoffice-nav a,
+  .backoffice-logout {
+    min-height: 40px;
+    padding: 9px;
+    font-size: 0.82rem;
+  }
+
+  .backoffice-header {
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .backoffice-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .backoffice-user {
+    min-width: 0;
+  }
+
+  .dashboard-summary-grid,
+  .admin-dashboard-grid,
+  .workspace-grid,
+  .admin-stack-section,
+  .admin-products-section {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-card,
+  .metric-card {
+    padding: 16px;
+  }
+
+  .table-shell {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-modern {
+    min-width: 720px;
+  }
+
+  .inline-form,
+  .compact-form {
+    align-items: stretch;
+  }
+
+  .inline-form .form-control,
+  .inline-form .form-select,
+  .inline-form .btn,
+  .compact-form .form-control,
+  .compact-form .form-select,
+  .compact-form .btn {
+    width: 100%;
+  }
 }

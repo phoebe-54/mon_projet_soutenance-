@@ -369,7 +369,7 @@ include __DIR__ . '/backoffice/includes/header.php';
         </div>
 
         <div class="catalogue-hero-visual">
-            <img src="../../assets/images/home-hero-clean.png" alt="NOCIBE">
+            <img src="assets/images/accueil.png" alt="NOCIBE">
         </div>
 
     </div>
@@ -381,7 +381,7 @@ include __DIR__ . '/backoffice/includes/header.php';
         <div class="catalogue-card">
 
             <div class="catalogue-card-image">
-                <img src="../../assets/images/ciment1.jpg" alt="Ciment">
+                <img src="assets/images/product-cement.svg" alt="Ciment">
             </div>
 
             <div class="catalogue-card-body">
@@ -421,7 +421,7 @@ include __DIR__ . '/backoffice/includes/header.php';
         <div class="catalogue-card">
 
             <div class="catalogue-card-image">
-                <img src="../../assets/images/ciment2.jpg" alt="Ciment">
+                <img src="assets/images/product-concrete.svg" alt="Ciment">
             </div>
 
             <div class="catalogue-card-body">
@@ -461,7 +461,7 @@ include __DIR__ . '/backoffice/includes/header.php';
         <div class="catalogue-card">
 
             <div class="catalogue-card-image">
-                <img src="../../assets/images/ciment3.jpg" alt="Ciment">
+                <img src="assets/images/product-gravel.svg" alt="Ciment">
             </div>
 
             <div class="catalogue-card-body">

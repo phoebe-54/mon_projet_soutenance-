@@ -14,27 +14,6 @@ $accounts = [
         'extraSql' => null,
         'extraParams' => [],
     ],
-    [
-        'table' => 'commercial',
-        'nom' => 'Commercial',
-        'prenom' => '',
-        'email' => 'commercial@gmail.com',
-        'password' => 'commercial123',
-        'extraSql' => ', diplome',
-        'extraParams' => ['diplome' => 'Commercial NOCIBE'],
-    ],
-    [
-        'table' => 'livreur',
-        'nom' => 'Livreur',
-        'prenom' => '',
-        'email' => 'livreur@gmail.com',
-        'password' => 'livreur123',
-        'extraSql' => ', num_permis, num_plaque',
-        'extraParams' => [
-            'num_permis' => 'PERMIS-NOCIBE',
-            'num_plaque' => 'PLAQUE-NOCIBE',
-        ],
-    ],
 ];
 
 foreach ($accounts as $account) {
@@ -95,4 +74,4 @@ foreach ($accounts as $account) {
     $pdo->commit();
 }
 
-echo "Comptes crees ou mis a jour.\n";
+echo "Compte administrateur cree ou mis a jour. Les comptes commercial et livreur doivent etre crees depuis l'espace admin.\n";

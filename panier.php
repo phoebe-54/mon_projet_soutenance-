@@ -16,9 +16,9 @@ $panier = $_SESSION['panier'];
 
 /* PRODUITS FIXES (démo) */
 $produits = [
-    1 => ['nom' => 'Ciment Portland CEM II', 'prix' => 5800, 'image' => '../../assets/images/ciment1.jpg'],
-    2 => ['nom' => 'Ciment Gris 32.5R', 'prix' => 4900, 'image' => '../../assets/images/ciment2.jpg'],
-    3 => ['nom' => 'Ciment Premium 52.5N', 'prix' => 7200, 'image' => '../../assets/images/ciment3.jpg'],
+    1 => ['nom' => 'Ciment Portland CEM II', 'prix' => 5800, 'image' => 'assets/images/product-cement.svg'],
+    2 => ['nom' => 'Ciment Gris 32.5R', 'prix' => 4900, 'image' => 'assets/images/product-concrete.svg'],
+    3 => ['nom' => 'Ciment Premium 52.5N', 'prix' => 7200, 'image' => 'assets/images/product-gravel.svg'],
 ];
 
 $total = 0;
@@ -288,7 +288,7 @@ $total = 0;
     </div>
 
     <div class="cart-hero-visual">
-        <img src="../../assets/images/home-hero-clean.png" alt="Panier NOCIBE">
+        <img src="assets/images/accueil.png" alt="Panier NOCIBE">
     </div>
 
 </div>

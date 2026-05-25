@@ -18,6 +18,20 @@ function roleRedirectPath(string $role): string
     };
 }
 
+function publicAppUrl(): string
+{
+    $mailConfigPath = __DIR__ . '/config/mail.php';
+    if (is_file($mailConfigPath)) {
+        $mailConfig = require $mailConfigPath;
+        $configuredAppUrl = rtrim((string) ($mailConfig['app_url'] ?? ''), '/');
+        if ($configuredAppUrl !== '') {
+            return $configuredAppUrl;
+        }
+    }
+
+    return '';
+}
+
 function detectUserRole(PDO $pdo, int $userId): string
 {
     foreach (['administrateur' => 'admin', 'commercial' => 'commercial', 'livreur' => 'livreur', 'client' => 'client'] as $table => $role) {
@@ -40,6 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!$user || !password_verify($_POST['password'] ?? '', $user['mot_de_passe'])) {
             $error = 'Email ou mot de passe incorrect.';
+        } elseif (isset($user['is_active']) && (int) $user['is_active'] !== 1) {
+            $error = 'Ce compte est desactive. Veuillez contacter un administrateur.';
         } else {
             $role = detectUserRole($pdo, (int) $user['id_user']);
             $displayName = trim(($user['prenom'] ?? '') . ' ' . $user['nom']);
@@ -57,7 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'role' => $role,
             ];
 
-            header('Location: ' . roleRedirectPath($role));
+            $redirectPath = roleRedirectPath($role);
+            $appUrl = publicAppUrl();
+            header('Location: ' . ($appUrl !== '' ? $appUrl . '/' . $redirectPath : $redirectPath));
             exit;
         }
     } catch (Throwable $exception) {

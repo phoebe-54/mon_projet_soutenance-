@@ -47,7 +47,9 @@ if (!function_exists('requireLogin')) {
         $user = currentUser();
 
         if ($user === null) {
-            header('Location: ../../login.php');
+            $scriptPath = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+            $loginPath = str_contains($scriptPath, '/backoffice/') ? '../../login.php' : 'login.php';
+            header('Location: ' . $loginPath);
             exit;
         }
 

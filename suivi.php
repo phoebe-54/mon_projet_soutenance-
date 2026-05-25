@@ -403,7 +403,7 @@ include __DIR__ . '/backoffice/includes/header.php';
         </div>
 
         <div class="suivi-hero-visual">
-            <img src="../../assets/images/home-hero-clean.png" alt="NOCIBE">
+            <img src="assets/images/livraison.png" alt="NOCIBE">
         </div>
 
     </div>

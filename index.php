@@ -74,7 +74,7 @@ include 'includes/header.php';
             <article class="home-process-card">
                 <span>02</span>
                 <div class="home-process-visual">
-                    <img src="assets/images/Copilot_20260525_131124.png" onerror="this.onerror=null;this.src='assets/images/Copilot_20260522_140442.png';" alt="Validation de commande NOCIBE">
+                    <img src="assets/images/Copilot_20260522_140442.png" alt="Validation de commande NOCIBE">
                 </div>
                 <i class="fa-solid fa-file-signature" aria-hidden="true"></i>
                 <h3>Passer commande</h3>
